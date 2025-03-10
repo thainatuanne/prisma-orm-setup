@@ -4,6 +4,9 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+// npx prisma migrate dev para criar as migrations
+//  // ctrl + s para identar o código ou salvar o projeto
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -21,7 +24,7 @@ model Aluno {
   email        String   @unique @db.VarChar(50)
   ativo        Boolean  @default(true)
   idade        Int?     @db.Integer
-  // ctrl + s para identar o código ou salvar o projeto
+
   criadoEm     DateTime @default(now()) @map("criadoEm")
   atualizadoEm DateTime @default(now()) @updatedAt
 
