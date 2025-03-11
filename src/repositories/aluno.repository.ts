@@ -31,11 +31,19 @@ export class AlunosRepository {
 
     async create(dto: CreateAlunoDTO): Promise<Aluno> {
         const novoAluno = await prismaClient.aluno.create({
-            data: {... dto},
+            data: { ...dto },
         });
 
         // INSERT TO alunos (nome, sobrenome, ...) VALUES ("Thainá", "...", ...)
 
         return novoAluno
     }
+
+    // conforme documentação
+
+    //turmas repsoitorys
+
+    // add update
+
+    // add delete
 }
