@@ -17,16 +17,51 @@ datasource db {
 }
 
 model Aluno {
-  id           Int      @id @default(autoincrement()) @db.Integer
-  nome         String   @db.VarChar(50)
-  sobrenome    String   @db.VarChar(100)
-  cpf          String   @db.VarChar(11)
-  email        String   @unique @db.VarChar(50)
-  ativo        Boolean  @default(true)
-  idade        Int?     @db.Integer
+  id        Int     @id @default(autoincrement()) @db.Integer
+  nome      String  @db.VarChar(50)
+  sobrenome String  @db.VarChar(100)
+  cpf       String  @db.VarChar(11)
+  email     String  @unique @db.VarChar(50)
+  ativo     Boolean @default(true)
+  idade     Int?    @db.Integer
 
   criadoEm     DateTime @default(now()) @map("criadoEm")
   atualizadoEm DateTime @default(now()) @updatedAt
 
+  matriculas Matricula[]
+
   @@map("alunos")
+}
+
+model Turma {
+  id          Int      @id @default(autoincrement()) @db.Integer
+  nome        String   @db.VarChar(200)
+  dataInicio  DateTime @map("data_inicio") @db.Date
+  dataTermino DateTime @map("data_termino") @db.Date
+
+  matriculas Matricula[]
+
+  @@map("turmas")
+}
+
+// 1 - N um aluno pode estar matriculaod em N turmas
+// 1 - N uma turma pode conter N alunos matriculados
+
+model Matricula {
+  id            Int           @id @default(autoincrement()) @db.Integer
+  idTurma       Int           @map("id_turma") @db.Integer
+  idAluno       Int           @map("id_aluno") @db.Integer
+  dataMatricula DateTime      @map("data_matricula") @db.Date
+  situacao      SituacaoAluno @default(pendente)
+
+  aluno Aluno @relation(fields: [idAluno], references: [id])
+  turma Turma @relation(fields: [idTurma], references: [id])
+
+  @@map("matriculas")
+}
+
+enum SituacaoAluno {
+  pendente
+  regular
+  bloqueado
 }
