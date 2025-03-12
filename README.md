@@ -1,5 +1,9 @@
 # Prisma ORM Setup
 
+![Prisma](https://img.shields.io/badge/Prisma-ORM-blue?style=for-the-badge)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue?style=for-the-badge)
+![TypeScript](https://img.shields.io/badge/TypeScript-Programming-blue?style=for-the-badge)
+
 ## 📌 Sobre o Projeto
 Este projeto implementa um sistema de gerenciamento de turmas e matrículas utilizando **Prisma ORM** com **Node.js** e **TypeScript**. Ele permite:
 - Criar, listar, atualizar e deletar **turmas**.
